@@ -1,0 +1,22 @@
+SYNOPSIS
+
+     use IPC::System::Locale qw(system);
+    
+     # set locale to C
+     system(...);
+    
+     # set locale explicitly
+     system({lang=>"id_ID"} ...);
+
+DESCRIPTION
+
+FUNCTIONS
+
+ system([ \%opts ], @args)
+
+    This is a shortcut for <IPC::System::Options::system({lang="C"}, ...)>>
+    (you can also set lang or other options explicitly).
+
+    This routine might be helpful if you are checking the output of some
+    program and want to make sure that the output is in English/C locale.
+
