@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Set language before executing system()",
+  "ABSTRACT" => "Set language before executing system() or backtick/qx",
   "AUTHOR" => "perlancar <perlancar\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
@@ -22,7 +22,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.010001",
   "NAME" => "IPC::System::Locale",
   "PREREQ_PM" => {
-    "IPC::System::Options" => 0
+    "IPC::System::Options" => "0.02"
   },
   "TEST_REQUIRES" => {
     "File::Spec" => 0,
@@ -30,7 +30,7 @@ my %WriteMakefileArgs = (
     "IPC::Open3" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -42,7 +42,7 @@ my %FallbackPrereqs = (
   "File::Spec" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
-  "IPC::System::Options" => 0,
+  "IPC::System::Options" => "0.02",
   "Perl::osnames" => "0.09",
   "Test::More" => 0
 );

@@ -1,5 +1,5 @@
 {
-   "abstract" : "Set language before executing system()",
+   "abstract" : "Set language before executing system() or backtick/qx",
    "author" : [
       "perlancar <perlancar@cpan.org>"
    ],
@@ -30,7 +30,7 @@
       },
       "runtime" : {
          "requires" : {
-            "IPC::System::Options" : "0",
+            "IPC::System::Options" : "0.02",
             "perl" : "5.010001"
          }
       },
@@ -55,7 +55,7 @@
          "web" : "https://github.com/perlancar/perl-IPC-System-Locale"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"

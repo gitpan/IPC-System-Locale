@@ -1,7 +1,7 @@
 package IPC::System::Locale;
 
 our $DATE = '2015-01-04'; # DATE
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 use 5.010001;
 use strict;
@@ -10,7 +10,7 @@ use warnings;
 use IPC::System::Options ();
 
 use Exporter qw(import);
-our @EXPORT_OK = qw(system);
+our @EXPORT_OK = qw(system backtick);
 
 sub system {
     my $opts = ref($_[0]) eq 'HASH' ? shift : {};
@@ -21,8 +21,17 @@ sub system {
     }, @_);
 }
 
+sub backtick {
+    my $opts = ref($_[0]) eq 'HASH' ? shift : {};
+
+    IPC::System::Options::backtick({
+        lang => 'C', # default
+        %$opts,
+    }, @_);
+}
+
 1;
-# ABSTRACT: Set language before executing system()
+# ABSTRACT: Set language before executing system() or backtick/qx
 
 __END__
 
@@ -32,21 +41,24 @@ __END__
 
 =head1 NAME
 
-IPC::System::Locale - Set language before executing system()
+IPC::System::Locale - Set language before executing system() or backtick/qx
 
 =head1 VERSION
 
-This document describes version 0.01 of IPC::System::Locale (from Perl distribution IPC-System-Locale), released on 2015-01-04.
+This document describes version 0.02 of IPC::System::Locale (from Perl distribution IPC-System-Locale), released on 2015-01-04.
 
 =head1 SYNOPSIS
 
- use IPC::System::Locale qw(system);
+ use IPC::System::Locale qw(system backtick);
 
  # set locale to C
  system(...);
 
  # set locale explicitly
  system({lang=>"id_ID"} ...);
+
+ # same for backtick (qx)
+ my $output = backtick("df");
 
 =head1 DESCRIPTION
 
@@ -56,6 +68,14 @@ This document describes version 0.01 of IPC::System::Locale (from Perl distribut
 
 This is a shortcut for C<<IPC::System::Options::system({lang=>"C"}, ...)>> (you
 can also set C<lang> or other options explicitly).
+
+This routine might be helpful if you are checking the output of some program and
+want to make sure that the output is in English/C locale.
+
+=head2 backtick([ \%opts ], @args)
+
+This is a shortcut for C<<IPC::System::Options::backtick({lang=>"C"}, ...)>>
+(you can also set C<lang> or other options explicitly).
 
 This routine might be helpful if you are checking the output of some program and
 want to make sure that the output is in English/C locale.
